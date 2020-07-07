@@ -6,6 +6,18 @@ if(CModule::includeModule('iblock')){
 	$resultNews = CIBlockElement::GetList(array(), $arFilter, false, false, $arSelect);
 	while($element = $resultNews->GetNextElement()){
 		$fieldsElement=$element->GetFields();
+
+		$arButtons = CIBlock::GetPanelButtons(
+            $fieldsElement["IBLOCK_ID"],
+            $fieldsElement["ID"],
+            0,
+            array("SECTION_BUTTONS"=>false, "SESSID"=>false)
+        );
+		$arItem["ADD_LINK"] = $arButtons["edit"]["add_element"]["ACTION_URL"];
+        $arItem["EDIT_LINK"] = $arButtons["edit"]["edit_element"]["ACTION_URL"];
+        $arItem["DELETE_LINK"] = $arButtons["edit"]["delete_element"]["ACTION_URL"];
+        $fieldsElement["LINKS"] = $arItem;
+
 		$arNews[$fieldsElement['ID']] = $fieldsElement;
 	}
 
