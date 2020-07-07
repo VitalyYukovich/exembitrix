@@ -43,16 +43,16 @@ if($USER->IsAuthorized()){
 					}
 			}
 		}
-		$columnNews = array_column($arResult['users'], 'NEWS');
-		$rowNews = array();
-		foreach($columnNews as $news){
-			$rowNews = array_merge($rowNews, $news);
-		}
-
-		$columnIdNews = array_column($rowNews, 'ID');
-		$uniqueIdNews = array_unique($columnIdNews);
-		$countUniqueNews = count($uniqueIdNews);
 	}
+	$columnNews = array_column($arResult['users'], 'NEWS');
+	$rowNews = array();
+	foreach($columnNews as $news){
+		$rowNews = array_merge($rowNews, $news);
+	}
+
+	$columnIdNews = array_column($rowNews, 'ID');
+	$uniqueIdNews = array_unique($columnIdNews);
+	$countUniqueNews = count($uniqueIdNews);
 }
 
 $count = isset($countUniqueNews)?$countUniqueNews:0;
