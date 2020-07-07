@@ -1,6 +1,14 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 if(CModule::includeModule('iblock')){
+	$additionalFilter = array();
+	if($_GET['F']){
+		$additionalFilter = array(
+			'LOGIC' => 'OR',
+			array('<=PROPERTY_PRICE' => 1700, '=PROPERTY_MATERIAL' => 'Дерево, ткань'),
+			array('<PROPERTY_PRICE' => 1500, '=PROPERTY_MATERIAL' => 'Металл, пластик')
+		);
+	}
 	$arFilter = array('IBLOCK_ID' => $arParams['IBLOCK_ID_NEWS'], 'ACTIVE' => 'Y');
 	$arSelect = array('ID', 'NAME', 'ACTIVE_FROM');
 	$resultNews = CIBlockElement::GetList(array(), $arFilter, false, false, $arSelect);
@@ -9,7 +17,7 @@ if(CModule::includeModule('iblock')){
 		$arNews[$fieldsElement['ID']] = $fieldsElement;
 	}
 
-	$arFilter = array('IBLOCK_ID' => $arParams['IBLOCK_ID_PRODUCT'], 'ACTIVE' => 'Y');
+	$arFilter = array('IBLOCK_ID' => $arParams['IBLOCK_ID_PRODUCT'], 'ACTIVE' => 'Y',$additionalFilter);
 	$arSelect = array('ID', 'NAME', 'IBLOCK_SECTION_ID', 'PROPERTY_MATERIAL', 'PROPERTY_ARTNUMBER', 'PROPERTY_PRICE');
 	$resultProduct = CIBlockElement::GetList(array(), $arFilter, false, false, $arSelect);
 	while($element = $resultProduct->GetNextElement()){
