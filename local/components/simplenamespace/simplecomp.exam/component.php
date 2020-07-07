@@ -18,10 +18,10 @@ if($USER->IsAuthorized()){
 
 	$IdCurrentUser = $USER->GetID();
 	global $USER_FIELD_MANAGER;
-	$valueUserField = $USER_FIELD_MANAGER->GetUserFields('USER', $IdCurrentUser)['UF_AUTHOR_TYPE']['VALUE'];
+	$valueUserField = $USER_FIELD_MANAGER->GetUserFields('USER', $IdCurrentUser)[$arParams['CODE_USER_FIELD_TYPE_AUTHOR']]['VALUE'];
 
 
-	$filter = array('UF_AUTHOR_TYPE' => $valueUserField);
+	$filter = array($arParams['CODE_USER_FIELD_TYPE_AUTHOR'] => $valueUserField);
 	$resultUsers = CUser::GetList(($by = "NAME"), ($order = "desc"), $filter);
 	while($user = $resultUsers->fetch()){
 		$users[$user['ID']] = $user;
@@ -33,10 +33,10 @@ if($USER->IsAuthorized()){
 		if($IdCurrentUser != $user['ID']){
 			$arResult['users'][$user['ID']] = array('ID' => $user['ID'], 'LOGIN'=> $user['LOGIN'], 'NEWS' => array());
 			foreach($arNews as $news){
-				if(in_array($IdCurrentUser, $news['PROPERTIES']['AUTHOR']['VALUE'])){
+				if(in_array($IdCurrentUser, $news['PROPERTIES'][$arParams['CODE_PROPETRY_AUTHOR']]['VALUE'])){
 					continue;
 				}
-				foreach($news['PROPERTIES']['AUTHOR']['VALUE'] as $value)
+				foreach($news['PROPERTIES'][$arParams['CODE_PROPETRY_AUTHOR']]['VALUE'] as $value)
 					if($value ==  $user['ID']){
 						$arResult['users'][$user['ID']]['NEWS'][$news['ID']] = array('ID' => $news['ID'], 'NAME' => $news['NAME'], 'DATE_ACTIVE_FROM' => $news['DATE_ACTIVE_FROM']);
 						break;
