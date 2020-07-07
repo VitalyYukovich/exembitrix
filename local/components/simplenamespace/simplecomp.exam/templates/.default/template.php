@@ -1,5 +1,9 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();?>
 
+<?if(!$_GET['F']){
+	$link = $APPLICATION->GetCurUri() . '?F=Y';
+	echo  '<p>Фильтр: <a href=' . $link . '>' . $link . '</a></p>';
+}?>
 <h3>Каталог</h3>
 <ul>
 	<?foreach($arResult['arNews'] as $news){?>
