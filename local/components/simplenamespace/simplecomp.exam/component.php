@@ -1,11 +1,8 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
-
-function pr($var){
-	echo '<pre>';
-	print_r($var);
-	echo '</pre>';
-}
+//Проверяем авторизацию
 if($USER->IsAuthorized()){
+
+	//Выборка элементов из иб указанного в параметрах (новостей)
 	$arFilter = array('IBLOCK_ID' => $arParams['IBLOCK_ID_NEWS'], 'ACTIVE'=>'Y');
 	$arSelect = array('ID', 'NAME');
 	$result = CIBlockElement::GetList(array(), $arFilter, false, false, array());
@@ -15,7 +12,7 @@ if($USER->IsAuthorized()){
 		$arNews[$element['ID']]['PROPERTIES'] = $item->GetProperties();
 	}
 
-
+	//Выборка пользователей у которых значение пользовательского поля, равно значению этого поля у текущего пользователя
 	$IdCurrentUser = $USER->GetID();
 	global $USER_FIELD_MANAGER;
 	$valueUserField = $USER_FIELD_MANAGER->GetUserFields('USER', $IdCurrentUser)[$arParams['CODE_USER_FIELD_TYPE_AUTHOR']]['VALUE'];
@@ -27,7 +24,7 @@ if($USER->IsAuthorized()){
 		$users[$user['ID']] = $user;
 	}
 
-
+	//формирование массива пользователей и соответствующих им новостей
 	$arResult['users'] = array();
 	foreach($users as $user){
 		if($IdCurrentUser != $user['ID']){
@@ -44,6 +41,9 @@ if($USER->IsAuthorized()){
 			}
 		}
 	}
+
+
+	//Вычисление количества уникальных новостей, которые будут выведены на страницу
 	$columnNews = array_column($arResult['users'], 'NEWS');
 	$rowNews = array();
 	foreach($columnNews as $news){
