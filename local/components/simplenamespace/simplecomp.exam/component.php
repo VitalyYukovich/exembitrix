@@ -1,6 +1,16 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 if(CModule::includeModule('iblock')){
+
+	$arButtons = CIBlock::GetPanelButtons($arParams["IBLOCK_ID_PRODUCT"]);
+    $this->AddIncludeAreaIcon(
+        array(
+            "TITLE" => "ИБ в админке",
+            "URL" => $arButtons['submenu']['element_list']['ACTION_URL'],
+            "IN_PARAMS_MENU" => true, //отобразить кнопку в меню
+        )
+    );
+
 	$arFilter = array('IBLOCK_ID' => $arParams['IBLOCK_ID_NEWS'], 'ACTIVE' => 'Y');
 	$arSelect = array('ID', 'NAME', 'ACTIVE_FROM');
 	$resultNews = CIBlockElement::GetList(array(), $arFilter, false, false, $arSelect);
