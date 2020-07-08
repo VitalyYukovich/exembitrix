@@ -1,6 +1,10 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
+if($this->startResultCache(false, array($USER->GetGroups()))){
+	echo 'не кеш';
+
 	if(CModule::includeModule('iblock')){
+
 		$arFilter = array('IBLOCK_ID' => $arParams['IBLOCK_ID_CLASSIFIER'], 'CHECK_PERMISSIONS' => 'Y','ACTIVE' => 'Y');
 		$arSelect = array('ID', 'NAME');
 		$resultClassifier = CIBlockElement::GetList(array(), $arFilter, false, false, $arSelect);
@@ -32,9 +36,14 @@
 				}
 			}
 		}
-
 		$arResult['arClassifier'] = $arClassifier;
+		$arResult['countClassifier'] = count($arClassifier);
+
 		$this->IncludeComponentTemplate();
 	}
-	$APPLICATION->SetTitle('Разделов: '. count($arClassifier));
+}else{
+	echo 'кеш';
+	$this->abortResultCache();
+}
+$APPLICATION->SetTitle('Разделов: '. $arResult['countClassifier']);
 ?>
