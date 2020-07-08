@@ -1,7 +1,12 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
+global $CACHE_MANAGER;
+define("IBLOCK_ID", 3);
+
 if($this->startResultCache(false, array($USER->GetGroups()))){
 	if(CModule::includeModule('iblock')){
+
+		$CACHE_MANAGER->RegisterTag('iblock_id_' . IBLOCK_ID);
 
 		$arFilter = array('IBLOCK_ID' => $arParams['IBLOCK_ID_CLASSIFIER'], 'CHECK_PERMISSIONS' => 'Y','ACTIVE' => 'Y');
 		$arSelect = array('ID', 'NAME');

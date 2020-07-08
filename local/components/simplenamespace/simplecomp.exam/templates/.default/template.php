@@ -2,6 +2,7 @@
 
 	$arTemplateLinkDetail = explode('/', $arParams['TEMPLATE_LINK_DETAIL']);
 	array_shift($arTemplateLinkDetail);
+	echo 'Метка времени: ' . time();
 ?>
 	<h3><b>Каталог:</b></h3>
 
