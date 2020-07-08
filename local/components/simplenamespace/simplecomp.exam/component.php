@@ -1,6 +1,5 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 if($this->startResultCache()){
-	echo 'не кеш';
 	if(CModule::includeModule('iblock')){
 		$arFilter = array('IBLOCK_ID' => $arParams['IBLOCK_ID_NEWS'], 'ACTIVE' => 'Y');
 		$arSelect = array('ID', 'NAME', 'ACTIVE_FROM');
