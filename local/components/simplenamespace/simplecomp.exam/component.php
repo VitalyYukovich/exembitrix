@@ -3,7 +3,8 @@
 	if(CModule::includeModule('iblock')){
 		$arFilter = array('IBLOCK_ID' => $arParams['IBLOCK_ID_CLASSIFIER'], 'CHECK_PERMISSIONS' => 'Y','ACTIVE' => 'Y');
 		$arSelect = array('ID', 'NAME');
-		$resultClassifier = CIBlockElement::GetList(array(), $arFilter, false, false, $arSelect);
+		$resultClassifier = CIBlockElement::GetList(array(), $arFilter, false, array("nPageSize" => $arParams['COUNT_ELEMENT_ON_PAGE']), $arSelect);
+		$arResult["NAVIGATION"] = $resultClassifier->GetPageNavString("Странички");
 		while($element = $resultClassifier->GetNextElement()){
 			$fieldsElement=$element->GetFields();
 			$arClassifier[$fieldsElement['ID']] = $fieldsElement;

@@ -11,7 +11,8 @@ $APPLICATION->SetTitle("Простой компонент");
 		"IBLOCK_ID_CLASSIFIER" => "7",
 		"IBLOCK_ID_PRODUCT" => "2",
 		"TEMPLATE_LINK_DETAIL" => "#SITE_DIR#/products/#IBLOCK_SECTION_ID#/#ID#/",
-		"COMPONENT_TEMPLATE" => ".default"
+		"COMPONENT_TEMPLATE" => ".default",
+		"COUNT_ELEMENT_ON_PAGE" => "2"
 	),
 	false
 );?><br>

@@ -18,4 +18,7 @@
 		</ul>
 	<?}?>
 	<ul>
-<??>
+	<br>
+	---
+	<p><b>Навигация</b></p>
+	<?echo $arResult["NAVIGATION"]?>
