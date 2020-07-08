@@ -5,7 +5,7 @@ $APPLICATION->SetTitle("Простой компонент");
 	"simplenamespace:simplecomp.exam", 
 	".default", 
 	array(
-		"CACHE_TIME" => "0",
+		"CACHE_TIME" => "360000",
 		"CACHE_TYPE" => "A",
 		"CODE_PROPERTY" => "PRODUCER",
 		"IBLOCK_ID_CLASSIFIER" => "7",

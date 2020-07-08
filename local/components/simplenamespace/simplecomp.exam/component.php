@@ -1,8 +1,6 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 if($this->startResultCache(false, array($USER->GetGroups()))){
-	echo 'не кеш';
-
 	if(CModule::includeModule('iblock')){
 
 		$arFilter = array('IBLOCK_ID' => $arParams['IBLOCK_ID_CLASSIFIER'], 'CHECK_PERMISSIONS' => 'Y','ACTIVE' => 'Y');
@@ -41,9 +39,6 @@ if($this->startResultCache(false, array($USER->GetGroups()))){
 
 		$this->IncludeComponentTemplate();
 	}
-}else{
-	echo 'кеш';
-	$this->abortResultCache();
 }
 $APPLICATION->SetTitle('Разделов: '. $arResult['countClassifier']);
 ?>
