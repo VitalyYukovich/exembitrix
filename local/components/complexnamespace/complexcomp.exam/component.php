@@ -46,7 +46,6 @@ if($arParams["SEF_MODE"] == "Y")
 
 	$arUrlTemplates = CComponentEngine::MakeComponentUrlTemplates($arDefaultUrlTemplates404, $arParams["SEF_URL_TEMPLATES"]);
 	$arVariableAliases = CComponentEngine::MakeComponentVariableAliases($arDefaultVariableAliases404, $arParams["VARIABLE_ALIASES"]['exampage']);
-	echo '<pre>'; print_r($arVariableAliases); echo '</pre><br>';
 	$engine = new CComponentEngine($this);
 	if (CModule::IncludeModule('iblock'))
 	{
