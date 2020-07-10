@@ -8,15 +8,6 @@ IncludeTemplateLangFile(__FILE__);
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <?$APPLICATION->ShowHead();?>
 
-<?
-	CModule::IncludeModule('iblock');
-	$result = CIBlockElement::GetList(array("SORT"=>"ASC"), array('IBLOCK_ID'=>6, 'NAME' => $APPLICATION->getCurDir()), false, false, array('ID', 'NAME', 'PROPERTY_TITLE', 'PROPERTY_DESCRIPTION'));
-	while($item = $result->GetNextElement()){
-		$itemGetFields = $item->GetFields();
-		$APPLICATION->SetPageProperty('title', $itemGetFields['PROPERTY_TITLE_VALUE']);
-		$APPLICATION->SetPageProperty('description', $itemGetFields['PROPERTY_DESCRIPTION_VALUE']);
-	}
-?>
 
 <link href="<?=SITE_TEMPLATE_PATH?>/common.css" type="text/css" rel="stylesheet" />
 <link href="<?=SITE_TEMPLATE_PATH?>/colors.css" type="text/css" rel="stylesheet" />
