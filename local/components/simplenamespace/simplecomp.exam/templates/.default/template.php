@@ -6,7 +6,7 @@
 		<li><b><?echo $classifier['NAME'];?></b></li>
 		<ul>
 			<?foreach($classifier['PRODUCT'] as $product){?>
-				<li><?echo $product['NAME'] . ' - ' . $product['PROPERTY_PRICE_VALUE'] . ' - ' . $product['PROPERTY_MATERIAL_VALUE'] . ' - ' . $product['PROPERTY_ARTNUMBER_VALUE'];
+				<li><?echo $product['NAME'] . ' - ' . $product['PROPERTY_PRICE_VALUE'] . ' - ' . $product['PROPERTY_MATERIAL_VALUE'] . ' - ' . $product['PROPERTY_ARTNUMBER_VALUE'] . ' (' . $product['DETAIL_PAGE_URL'] . '.php)';
 				?></li>
 			<?}?>
 		</ul>

@@ -13,8 +13,9 @@ if($this->startResultCache(false, array($USER->GetGroups()))){
 		$arIdClassifier = array_column($arClassifier, 'ID');
 
 		$arFilter = array('IBLOCK_ID' => $arParams['IBLOCK_ID_PRODUCT'], 'CHECK_PERMISSIONS' => 'Y','ACTIVE' => 'Y', 'PROPERTY_'.$arParams['CODE_PROPERTY'] => $arIdClassifier);
-		$arSelect = array('ID', 'IBLOCK_SECTION_ID', 'NAME', 'PROPERTY_MATERIAL', 'PROPERTY_ARTNUMBER', 'PROPERTY_PRICE');
-		$resultProduct = CIBlockElement::GetList(array(), $arFilter, false, false, $arSelect);
+		$arSelect = array('ID', 'IBLOCK_SECTION_ID', 'DETAIL_PAGE_URL', 'NAME', 'PROPERTY_MATERIAL', 'PROPERTY_ARTNUMBER', 'PROPERTY_PRICE');
+		$resultProduct = CIBlockElement::GetList(array('NAME' =>'ASC', 'SORT' => 'ASC'), $arFilter, false, false, $arSelect);
+		$resultProduct->SetUrlTemplates($arParams['TEMPLATE_LINK_DETAIL']);
 		while($element = $resultProduct->GetNextElement()){
 			$fieldsElement=$element->GetFields();
 			$prop = CIBlockElement::GetProperty($arParams['IBLOCK_ID_PRODUCT'], $fieldsElement['ID'], Array("sort"=>"asc"), Array("CODE"=>$arParams['CODE_PROPERTY']));
